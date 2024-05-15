@@ -120,7 +120,7 @@ class ReplicationMiddleware(MiddlewareMixin):
         if not overrides:
             return
 
-        match = urls.resolve(request.path_info)
+        match = urls.resolve(request.path_info, urlconf=request.urlconf)
 
         import_path = '%s.%s' % (get_object_name(inspect.getmodule(match.func)),
                                  get_object_name(match.func))
